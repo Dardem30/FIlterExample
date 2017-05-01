@@ -1,6 +1,8 @@
+import by.DAO.DAOImple;
+import by.model.EmployeeEntity;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,6 +32,18 @@ if(login.equals("asd") && password.equals("123")){
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        DAOImple daoImple=new DAOImple();
+        if(request.getParameter("add")!=null){
+            EmployeeEntity employeeEntity=new EmployeeEntity();
+            employeeEntity.setEmployeeId(Long.parseLong(request.getParameter("employeeId")));
+            employeeEntity.setFirstname(request.getParameter("firstname"));
+            employeeEntity.setLastname(request.getParameter("lastname"));
+            daoImple.saveEmployee(employeeEntity);
+        }
+        if(request.getParameter("showAll")!=null){
+            request.setAttribute("list",daoImple.getList());
+            RequestDispatcher requestDispatcher=request.getRequestDispatcher("showAll.jsp");
+            requestDispatcher.forward(request,response);
+        }
     }
 }

@@ -11,6 +11,13 @@
     <title>Title</title>
 </head>
 <body>
+<form method="get" action="/login">
+    <input type="text" name="employeeId">
+    <input type="text" name="firstname">
+    <input type="text" name="lastname">
+    <input type="submit" name="add" value="add">
+    <input type="submit" name="showAll" value="showAll">
+</form>
 <form method="post" action="/out">
     <input type="submit" name="exit" value="выход">
 </form>

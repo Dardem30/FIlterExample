@@ -1,6 +1,5 @@
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
@@ -15,14 +14,12 @@ public class ServletOut extends HttpServlet {
         if(cookies != null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("JSESSIONID")){
-                    System.out.println("JSESSIONID="+cookie.getValue());
                     break;
                 }
             }
         }
 
         HttpSession session = request.getSession(false);
-        System.out.println("User="+session.getAttribute("user"));
         if(session != null){
             session.invalidate();
         }
